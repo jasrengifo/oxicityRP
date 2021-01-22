@@ -1,0 +1,119 @@
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css" type="text/css">
+</head>
+
+<body>
+	<div class="full-screen">
+		<div class="question-container">
+			<!-- header -->
+			<div class="header">
+				<h1>Autoescuela</h1>
+			</div>
+			<!-- home -->
+			<div class="body home">
+				<div class="content">
+					<!-- ICI BREVE PRESENTATION -->
+					<center>
+						<img src="https://www.oxicity.es/assets/images/server/logo.png" class="logo" style="width: 48px; height: 48px; margin-top: 10px">
+						<br>
+						<p class="bold-text">Bienvenido a la Autoescuela [Nombre de la autoescuela]
+					</center>
+					<br>
+					<center>Todos los ciudadanos de Oxicity deben aprobar su examen antes de poder conducir.
+						<br>Tómate tu tiempo, responde con sentido común y no respondas al azar.
+						<br>
+						<br> Prueba Teórica
+						<br> - La prueba de teoría cuesta 500 <img src="dmv.png" style="width: 15px; height: 15px">, esto no se reembolsa si no pasa la prueba
+						<br> - Puedes pagar en efectivo o por transferencia bancaria.
+						<br> - Si fallas la prueba, deberás esperar 2 días para reintentarlo, puedes tomarte ese tiempo para estudiar un poco más.
+						<br>
+						<br> Prueba Práctica de manejo
+						<br> - The Driving Test costs 600 <img src="dmv.png" style="width: 15px; height: 15px">, just like the theory test, this payment will not be refunded if you fail.
+						<br> - Make sure you stay alert whilst driving, and avoid accidents!</p>
+					</center>
+				</div>
+				<div class="buttonspot">
+					<a href="#" class="button btnQuestion">Start</a>
+				</div>
+				<div class="barre-progression">
+					<h2>Progress</h2>
+					<progress class="progression" value="0" max="10">
+				</div>
+			</div>
+			<!-- Question-->
+			<div class="body questionnaire-container">
+				<div class="content">
+					<h2 id="questionNumero"></h2>
+					<p id="question"></p>
+					<form class="form" id="question-form">
+						<div>
+							<input type="radio" name="question" id="answerA" value="A">
+							<label class="answerA"></label>
+						</div>
+						<div>
+							<input type="radio" name="question" id="answerB" value="B">
+							<label class="answerB"></label>
+						</div>
+						<div>
+							<input type="radio" name="question" id="answerC" value="C">
+							<label class="answerC"></label>
+						</div>
+						<div>
+							<input type="radio" name="question" id="answerD" value="D">
+							<label class="answerD"></label>
+						</div>
+						<button type="submit" id="submit" class="submit">Next question</button>
+					</form>
+				</div>
+				<div class="barre-progression">
+					<h2>Progress</h2>
+					<progress class="progression" value="0" max="10">
+				</div>
+			</div>
+			<!-- Results -->
+			<div class="body resultGood">
+				<div class="content">
+					<center>
+						<p class="bold-text">Good work!</p>
+						<br>
+						<br>You did well during the examination.
+						<br>
+						<br>You can close this window, and go take your road test(s).
+					</center>
+				</div>
+				<div class="buttonspot">
+					<a href="#" class="button btnClose">Close</a>
+				</div>
+				<div class="barre-progression">
+					<h2>Progress</h2>
+					<progress class="progression" value="10" max="10">
+				</div>
+			</div>
+			<div class="body resultBad">
+				<div class="content">
+					<center>
+						<p class="bold-text">You failed</p>
+						<br>
+						<br>You weren't ready for this test, try again later...
+						<br>
+						<br>
+					</center>
+				</div>
+				<div class="buttonspot">
+					<a href="#" class="button btnKick">Close</a>
+				</div>
+				<div class="barre-progression">
+					<h2>Progress</h2>
+					<progress class="progression" value="10" max="10">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<script src="questions.js" type="text/javascript"></script>
+	<script src="scripts.js" type="text/javascript"></script>
+	<script src="debounce.min.js" type="text/javascript"></script>
+
+</body>
