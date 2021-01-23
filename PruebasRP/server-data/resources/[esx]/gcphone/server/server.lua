@@ -28,9 +28,9 @@ function getPhoneRandomNumber()
 end
 
 --- Exemple pour les numero du style 06XXXXXXXX
--- function getPhoneRandomNumber()
--- return '0' .. math.random(600000000,699999999)
--- end
+ function getPhoneRandomNumber()
+ 	return '0' .. math.random(600000000,699999999)
+ end
 
 --====================================================================================
 -- Utils
