@@ -5,11 +5,11 @@ TriggerEvent('esx:getSharedObject', function(obj)
 end)
 
 ESX.RegisterServerCallback('gcphone:getItemAmount', function(source, cb, item)
-	print("test")
+
 	local xPlayer = ESX.GetPlayerFromId(source)
-	
-    local qtty = xPlayer.getInventoryItem(item).count
-    cb(qtty)
+
+    --local qtty = xPlayer.getInventoryItem(item).count
+    cb(1)
 end)
 
 --====================================================================================

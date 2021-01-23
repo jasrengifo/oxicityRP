@@ -55,6 +55,7 @@ end, true, {help = _U('command_giveaccountmoney'), validate = true, arguments = 
 }})
 
 ESX.RegisterCommand('giveitem', 'admin', function(xPlayer, args, showError)
+
 	args.playerId.addInventoryItem(args.item, args.count)
 end, true, {help = _U('command_giveitem'), validate = true, arguments = {
 	{name = 'playerId', help = _U('commandgeneric_playerid'), type = 'player'},
