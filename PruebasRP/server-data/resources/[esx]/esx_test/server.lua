@@ -19,7 +19,7 @@ RegisterCommand("givemoney", function(source, args)
 	if xPlayer.getGroup() == "admin" then
 		xPlayer.giveMoney(args[1])
 	else
-		print('No tienes permisos para usar este comando...dDDSDDSDSDSDin, mi lancha :c')
+		print('No tienes permisos para usar este comando...dDDDDDDSDDSDSDSDin, mi lancha :c')
 	end
 
 end)
