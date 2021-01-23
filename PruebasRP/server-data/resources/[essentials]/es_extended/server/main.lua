@@ -39,11 +39,13 @@ function onPlayerJoined(playerId)
 	local identifier
 
 	for k,v in ipairs(GetPlayerIdentifiers(playerId)) do
-		if string.match(v, 'license:') then
-			identifier = string.sub(v, 9)
+
+		if string.match(v, 'steam:') then
+			identifier = v
 			break
 		end
 	end
+	
 
 	if identifier then
 		if ESX.GetPlayerFromIdentifier(identifier) then

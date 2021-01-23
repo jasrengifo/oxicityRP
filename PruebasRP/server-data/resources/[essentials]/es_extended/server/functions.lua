@@ -190,9 +190,9 @@ ESX.SavePlayer = function(xPlayer, cb)
 	end)
 end
 
+
 ESX.SavePlayers = function(cb)
 	local xPlayers, asyncTasks = ESX.GetPlayers(), {}
-
 	for i=1, #xPlayers, 1 do
 		table.insert(asyncTasks, function(cb2)
 			local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
@@ -207,6 +207,8 @@ ESX.SavePlayers = function(cb)
 		end
 	end)
 end
+
+
 
 ESX.StartDBSync = function()
 	function saveData()
