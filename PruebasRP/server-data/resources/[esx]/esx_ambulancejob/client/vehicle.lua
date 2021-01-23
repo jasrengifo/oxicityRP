@@ -1,7 +1,13 @@
 local spawnedVehicles = {}
 
+
+
+
 function OpenVehicleSpawnerMenu(type, hospital, part, partNum)
 	local playerCoords = GetEntityCoords(PlayerPedId())
+
+
+
 
 	ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'vehicle', {
 		title    = _U('garage_title'),
@@ -190,6 +196,7 @@ function GetAvailableVehicleSpawnPoint(hospital, part, partNum)
 end
 
 function OpenShopMenu(elements, restoreCoords, shopCoords)
+	TriggerEvent("chatMessage", "Debug", {0,255,0}, 'sdsdsd')
 	local playerPed = PlayerPedId()
 	isInShopMenu = true
 
