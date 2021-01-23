@@ -10,7 +10,7 @@ RegisterCommand("oxinfo", function(source)
 
 end)
 
-
+ 
 RegisterCommand("givemoney", function(source, args)
 
 	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
@@ -19,11 +19,11 @@ RegisterCommand("givemoney", function(source, args)
 	if xPlayer.getGroup() == "admin" then
 		xPlayer.giveMoney(args[1])
 	else
-		print('No tienes permisos para usar este comando...dddd.Admin, mi lancha :c')
+		print('No tienes permisos para usar este comando...dddd.Admin, mi lancha :cc')
 	end
 
 end)
-
+ 
 
 
 RegisterCommand("destroymoney", function(source, args)
