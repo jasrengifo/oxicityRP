@@ -10,6 +10,9 @@ RegisterCommand("oxinfo", function(source)
 
 end)
 
+
+
+
  
 RegisterCommand("givemoney", function(source, args)
 
