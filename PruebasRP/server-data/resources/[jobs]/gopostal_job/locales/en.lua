@@ -50,5 +50,8 @@ Locales['en'] = {
 	['notif_title_delivery']    = '~r~OxiPostal',
 	['notif_district']			= '[Tu Sector:]\n----------------------\n%s',	
 
+	['bank_deposit_returned']   = 'un depósito de ~g~$%s~s~ ha sido devuelto a usted.',
+	['bank_deposit_taken']      = 'un depósito de ~g~$%s~s~ se te ha quitado.',
+}
 
 }
