@@ -17,7 +17,7 @@ Locales['en'] = {
 	['Vespucci']				= 'Sector : "~b~Vespucci Neighborhood~w~" ',
 	['SLS']						= 'Sector : "~y~Spud of Los Santos~w~" ',
 
-	['join_next']				= '~g~[•] ~b~Go to ~w~the property~r~ indicated on your  GPS',
+	['join_next']				= '~g~[•] ~b~Vaya a ~w~la propiedad~r~ indicada en el GPS',
 	['pickup']					= 'Pulsa ~INPUT_PICKUP~ para entregar',
 	['must_be_walking']			= '~r~[ERROR]: Debe estar a PIE',
 
@@ -34,8 +34,8 @@ Locales['en'] = {
 	--Distribution
 	['open_distribution']		= 'Pulsa ~INPUT_PICKUP~ Para recuperar el correo y los paquetes',
 
-	['letter']					= 'Carta',
-	['colis']					= 'Paquete',
+	['letter']					= 'Carta ',
+	['colis']					= 'Paquete ',
 
 	['distribution']			= 'Centro de distribución',
 	['deposit']					= 'Deposito',

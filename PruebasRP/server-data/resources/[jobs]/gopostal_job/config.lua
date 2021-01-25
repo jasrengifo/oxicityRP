@@ -1,5 +1,5 @@
 Config              = {}
-Config.DrawDistance = 30.0
+Config.DrawDistance = 20.0
 Config.Locale       = 'en'
 
 Config.JobVehiclePlate = 'OXICITY' -- Plaque des vehicules du job (maximun 8 caractères)
@@ -15,7 +15,7 @@ Config.PricePerLetter  = 7
 Config.PricePerColis   = 15
 
 Config.Vehicle = { -- Ajouter les véhicules du métier ici
-	"stockade3"
+	"Boxville2"
 }
 
 Config.Zones = { -- Emplacement des points
