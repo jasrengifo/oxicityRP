@@ -9,8 +9,8 @@
 ------------------VARIABLES----------------
 -------------------------------------------
 
-local pizzeria = { x = -80.8, y = -274.6, z = 110.2}
-local spawnfaggio = { x = -83.0, y = -266.4, z = 109.6 }
+local pizzeria = { x = 80.8, y = 274.6, z = 110.2}
+local spawnfaggio = { x = 83.0, y = 266.4, z = 109.6 }
 
 local propina = 0
 local posibilidad = 0
