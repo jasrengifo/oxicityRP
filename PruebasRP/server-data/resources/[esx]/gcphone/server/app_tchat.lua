@@ -18,6 +18,7 @@ function TchatAddMessage (channel, message)
   end)
 end
 
+
 RegisterServerEvent('gcPhone:tchat_channel')
 AddEventHandler('gcPhone:tchat_channel', function(channel)
   local sourcePlayer = tonumber(source)

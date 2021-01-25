@@ -2,9 +2,6 @@
 -- #Author: Jonathan D @Gannon
 -- #Version 2.0
 --====================================================================================
-ESX = nil
-
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 math.randomseed(os.time()) 
 
@@ -12,8 +9,7 @@ math.randomseed(os.time())
 function getPhoneRandomNumber()
     local numBase0 = math.random(100,999)
     local numBase1 = math.random(0,9999)
-    local num = string.format("%03d-%04d", numBase0, numBase1)
-
+    local num = string.format("%03d-%04d", numBase0, numBase1 )
 	return num
 end
 
@@ -22,42 +18,45 @@ end
 --     return '0' .. math.random(600000000,699999999)
 -- end
 
+
 --[[
   Ouverture du téphone lié a un item
   Un solution ESC basé sur la solution donnée par HalCroves
   https://forum.fivem.net/t/tutorial-for-gcphone-with-call-and-job-message-other/177904
 --]]
 --[[
- ESX.RegisterServerCallback('gcphone:getItemAmount', function(source, cb, item)
-	print('gcphone:getItemAmount call item : ' .. item)
-	local xPlayer = ESX.GetPlayerFromId(source)
+local ESX = nil
+TriggerEvent('esx:getSharedObject', function(obj) 
+    ESX = obj 
+    ESX.RegisterServerCallback('gcphone:getItemAmount', function(source, cb, item)
+        print('gcphone:getItemAmount call item : ' .. item)
+        local xPlayer = ESX.GetPlayerFromId(source)
         local items = xPlayer.getInventoryItem(item)
-
         if items == nil then
             cb(0)
         else
             cb(items.count)
         end
+    end)
 end)
 --]]
+
+
 
 --====================================================================================
 --  Utils
 --====================================================================================
 function getSourceFromIdentifier(identifier, cb)
-	local xPlayers = ESX.GetPlayers()
-	
-	for i=1, #xPlayers, 1 do
-		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
-		
-		if(xPlayer.identifier ~= nil and xPlayer.identifier == identifier) or (xPlayer.identifier == identifier) then
-			cb(xPlayer.source)
-			return
-		end
-	end
-	cb(nil)
+    TriggerEvent("es:getPlayers", function(users)
+        for k , user in pairs(users) do
+            if (user.getIdentifier ~= nil and user.getIdentifier() == identifier) or (user.identifier == identifier) then
+                cb(k)
+                return
+            end
+        end
+    end)
+    cb(nil)
 end
-
 function getNumberPhone(identifier)
     local result = MySQL.Sync.fetchAll("SELECT users.phone_number FROM users WHERE users.identifier = @identifier", {
         ['@identifier'] = identifier
@@ -77,13 +76,21 @@ function getIdentifierByPhoneNumber(phone_number)
     return nil
 end
 
+
+function getPlayerID(source)
+    local identifiers = GetPlayerIdentifiers(source)
+    local player = getIdentifiant(identifiers)
+    return player
+end
 function getIdentifiant(id)
     for _, v in ipairs(id) do
         return v
     end
 end
 
-function getOrGeneratePhoneNumber (identifier, cb)
+
+function getOrGeneratePhoneNumber (sourcePlayer, identifier, cb)
+    local sourcePlayer = sourcePlayer
     local identifier = identifier
     local myPhoneNumber = getNumberPhone(identifier)
     if myPhoneNumber == '0' or myPhoneNumber == nil then
@@ -110,7 +117,6 @@ function getContacts(identifier)
     })
     return result
 end
-
 function addContact(source, identifier, number, display)
     local sourcePlayer = tonumber(source)
     MySQL.Async.insert("INSERT INTO phone_users_contacts (`identifier`, `number`,`display`) VALUES(@identifier, @number, @display)", {
@@ -121,7 +127,6 @@ function addContact(source, identifier, number, display)
         notifyContactChange(sourcePlayer, identifier)
     end)
 end
-
 function updateContact(source, identifier, id, number, display)
     local sourcePlayer = tonumber(source)
     MySQL.Async.insert("UPDATE phone_users_contacts SET number = @number, display = @display WHERE id = @id", { 
@@ -132,7 +137,6 @@ function updateContact(source, identifier, id, number, display)
         notifyContactChange(sourcePlayer, identifier)
     end)
 end
-
 function deleteContact(source, identifier, id)
     local sourcePlayer = tonumber(source)
     MySQL.Sync.execute("DELETE FROM phone_users_contacts WHERE `identifier` = @identifier AND `id` = @id", {
@@ -141,13 +145,11 @@ function deleteContact(source, identifier, id)
     })
     notifyContactChange(sourcePlayer, identifier)
 end
-
 function deleteAllContact(identifier)
     MySQL.Sync.execute("DELETE FROM phone_users_contacts WHERE `identifier` = @identifier", {
         ['@identifier'] = identifier
     })
 end
-
 function notifyContactChange(source, identifier)
     local sourcePlayer = tonumber(source)
     local identifier = identifier
@@ -159,24 +161,21 @@ end
 RegisterServerEvent('gcPhone:addContact')
 AddEventHandler('gcPhone:addContact', function(display, phoneNumber)
     local sourcePlayer = tonumber(source)
-    xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local identifier = getPlayerID(source)
     addContact(sourcePlayer, identifier, phoneNumber, display)
 end)
 
 RegisterServerEvent('gcPhone:updateContact')
 AddEventHandler('gcPhone:updateContact', function(id, display, phoneNumber)
     local sourcePlayer = tonumber(source)
-    xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local identifier = getPlayerID(source)
     updateContact(sourcePlayer, identifier, id, phoneNumber, display)
 end)
 
 RegisterServerEvent('gcPhone:deleteContact')
 AddEventHandler('gcPhone:deleteContact', function(id)
     local sourcePlayer = tonumber(source)
-	xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local identifier = getPlayerID(source)
     deleteContact(sourcePlayer, identifier, id)
 end)
 
@@ -260,8 +259,7 @@ end
 RegisterServerEvent('gcPhone:sendMessage')
 AddEventHandler('gcPhone:sendMessage', function(phoneNumber, message)
     local sourcePlayer = tonumber(source)
-	xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local identifier = getPlayerID(source)
     addMessage(sourcePlayer, identifier, phoneNumber, message)
 end)
 
@@ -273,31 +271,28 @@ end)
 RegisterServerEvent('gcPhone:deleteMessageNumber')
 AddEventHandler('gcPhone:deleteMessageNumber', function(number)
     local sourcePlayer = tonumber(source)
-	xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local identifier = getPlayerID(source)
     deleteAllMessageFromPhoneNumber(sourcePlayer,identifier, number)
     -- TriggerClientEvent("gcphone:allMessage", sourcePlayer, getMessages(identifier))
 end)
 
 RegisterServerEvent('gcPhone:deleteAllMessage')
 AddEventHandler('gcPhone:deleteAllMessage', function()
-	xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local sourcePlayer = tonumber(source)
+    local identifier = getPlayerID(source)
     deleteAllMessage(identifier)
 end)
 
 RegisterServerEvent('gcPhone:setReadMessageNumber')
 AddEventHandler('gcPhone:setReadMessageNumber', function(num)
-	xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local identifier = getPlayerID(source)
     setReadMessageNumber(identifier, num)
 end)
 
 RegisterServerEvent('gcPhone:deleteALL')
 AddEventHandler('gcPhone:deleteALL', function()
     local sourcePlayer = tonumber(source)
-	xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
+    local identifier = getPlayerID(source)
     deleteAllMessage(identifier)
     deleteAllContact(identifier)
     appelsDeleteAllHistorique(identifier)
@@ -361,11 +356,11 @@ end
 RegisterServerEvent('gcPhone:getHistoriqueCall')
 AddEventHandler('gcPhone:getHistoriqueCall', function()
     local sourcePlayer = tonumber(source)
-	xplayer = ESX.GetPlayerFromId(source)
-    identifier = xplayer.identifier
-    local srcPhone = getNumberPhone(identifier)
+    local srcIdentifier = getPlayerID(source)
+    local srcPhone = getNumberPhone(srcIdentifier)
     sendHistoriqueCall(sourcePlayer, num)
 end)
+
 
 RegisterServerEvent('gcPhone:internal_startCall')
 AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtcOffer, extraData)
@@ -389,17 +384,16 @@ AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtc
     lastIndexCall = lastIndexCall + 1
 
     local sourcePlayer = tonumber(source)
-	local xplayer = ESX.GetPlayerFromId(source)
-    local identifier = xplayer.identifier
+    local srcIdentifier = getPlayerID(source)
 
     local srcPhone = ''
     if extraData ~= nil and extraData.useNumber ~= nil then
         srcPhone = extraData.useNumber
     else
-        srcPhone = getNumberPhone(identifier)
+        srcPhone = getNumberPhone(srcIdentifier)
     end
     local destPlayer = getIdentifierByPhoneNumber(phone_number)
-    local is_valid = destPlayer ~= nil and destPlayer ~= identifier
+    local is_valid = destPlayer ~= nil and destPlayer ~= srcIdentifier
     AppelsEnCours[indexCall] = {
         id = indexCall,
         transmitter_src = sourcePlayer,
@@ -412,6 +406,7 @@ AddEventHandler('gcPhone:internal_startCall', function(source, phone_number, rtc
         rtcOffer = rtcOffer,
         extraData = extraData
     }
+    
 
     if is_valid == true then
         getSourceFromIdentifier(destPlayer, function (srcTo)
@@ -451,6 +446,7 @@ AddEventHandler('gcPhone:candidates', function (callId, candidates)
     end
 end)
 
+
 RegisterServerEvent('gcPhone:acceptCall')
 AddEventHandler('gcPhone:acceptCall', function(infoCall, rtcAnswer)
     local id = infoCall.id
@@ -464,13 +460,14 @@ AddEventHandler('gcPhone:acceptCall', function(infoCall, rtcAnswer)
             AppelsEnCours[id].is_accepts = true
             AppelsEnCours[id].rtcAnswer = rtcAnswer
             TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].transmitter_src, AppelsEnCours[id], true)
-	    SetTimeout(1000, function() -- change to +1000, if necessary.
-       		TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].receiver_src, AppelsEnCours[id], false)
-	    end)
+            TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].receiver_src, AppelsEnCours[id], false)
             saveAppels(AppelsEnCours[id])
         end
     end
 end)
+
+
+
 
 RegisterServerEvent('gcPhone:rejectCall')
 AddEventHandler('gcPhone:rejectCall', function (infoCall)
@@ -498,9 +495,8 @@ end)
 RegisterServerEvent('gcPhone:appelsDeleteHistorique')
 AddEventHandler('gcPhone:appelsDeleteHistorique', function (numero)
     local sourcePlayer = tonumber(source)
-	local xplayer = ESX.GetPlayerFromId(source)
-    local identifier = xplayer.identifier
-    local srcPhone = getNumberPhone(identifier)
+    local srcIdentifier = getPlayerID(source)
+    local srcPhone = getNumberPhone(srcIdentifier)
     MySQL.Sync.execute("DELETE FROM phone_calls WHERE `owner` = @owner AND `num` = @num", {
         ['@owner'] = srcPhone,
         ['@num'] = numero
@@ -517,31 +513,81 @@ end
 RegisterServerEvent('gcPhone:appelsDeleteAllHistorique')
 AddEventHandler('gcPhone:appelsDeleteAllHistorique', function ()
     local sourcePlayer = tonumber(source)
-    local xplayer = ESX.GetPlayerFromId(source)
-    local identifier = xplayer.identifier
-    appelsDeleteAllHistorique(identifier)
+    local srcIdentifier = getPlayerID(source)
+    appelsDeleteAllHistorique(srcIdentifier)
 end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 --====================================================================================
 --  OnLoad
 --====================================================================================
-AddEventHandler('esx:playerLoaded',function(playerId, xPlayer)
-    local sourcePlayer = playerId
-    local identifier = xPlayer.identifier
-    local num = getNumberPhone(identifier)
-
-	getOrGeneratePhoneNumber(identifier, function (myPhoneNumber)
-        TriggerClientEvent('gcPhone:myPhoneNumber', sourcePlayer, myPhoneNumber)
-        TriggerClientEvent('gcPhone:contactList', sourcePlayer, getContacts(identifier))
-        TriggerClientEvent('gcPhone:allMessage', sourcePlayer, getMessages(identifier))
-        TriggerClientEvent('gcPhone:getBourse', sourcePlayer, getBourse())
-        sendHistoriqueCall(sourcePlayer, num)
+AddEventHandler('es:playerLoaded',function(source)
+    local sourcePlayer = tonumber(source)
+    local identifier = getPlayerID(source)
+    getOrGeneratePhoneNumber(sourcePlayer, identifier, function (myPhoneNumber)
+        TriggerClientEvent("gcPhone:myPhoneNumber", sourcePlayer, myPhoneNumber)
+        TriggerClientEvent("gcPhone:contactList", sourcePlayer, getContacts(identifier))
+        TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(identifier))
     end)
 end)
 
---[[ AddEventHandler('onMySQLReady', function ()
-    MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 10)")
-end) --]]
+-- Just For reload
+RegisterServerEvent('gcPhone:allUpdate')
+AddEventHandler('gcPhone:allUpdate', function()
+    local sourcePlayer = tonumber(source)
+    local identifier = getPlayerID(source)
+    local num = getNumberPhone(identifier)
+    TriggerClientEvent("gcPhone:myPhoneNumber", sourcePlayer, num)
+    TriggerClientEvent("gcPhone:contactList", sourcePlayer, getContacts(identifier))
+    TriggerClientEvent("gcPhone:allMessage", sourcePlayer, getMessages(identifier))
+    TriggerClientEvent('gcPhone:getBourse', sourcePlayer, getBourse())
+    sendHistoriqueCall(sourcePlayer, num)
+end)
+
+
+AddEventHandler('onMySQLReady', function ()
+    -- MySQL.Async.fetchAll("DELETE FROM phone_messages WHERE (DATEDIFF(CURRENT_DATE,time) > 10)")
+end)
 
 --====================================================================================
 --  App bourse
@@ -549,11 +595,11 @@ end) --]]
 function getBourse()
     --  Format
     --  Array 
-    --  Object
-    -- 	libelle type String    | Nom
-    --  price type number      | Prix actuelle
-    --  difference type number | Evolution 
-
+    --    Object
+    --      -- libelle type String    | Nom
+    --      -- price type number      | Prix actuelle
+    --      -- difference type number | Evolution 
+    -- 
     -- local result = MySQL.Sync.fetchAll("SELECT * FROM `recolt` LEFT JOIN `items` ON items.`id` = recolt.`treated_id` WHERE fluctuation = 1 ORDER BY price DESC",{})
     local result = {
         {
@@ -570,23 +616,31 @@ function getBourse()
             libelle = 'Amazon',
             price = 120,
             difference = 0
-        }}
+        }
+    }
     return result
 end
 
 --====================================================================================
 --  App ... WIP
 --====================================================================================
+
+
 -- SendNUIMessage('ongcPhoneRTC_receive_offer')
 -- SendNUIMessage('ongcPhoneRTC_receive_answer')
 
 -- RegisterNUICallback('gcPhoneRTC_send_offer', function (data)
 
+
 -- end)
+
 
 -- RegisterNUICallback('gcPhoneRTC_send_answer', function (data)
 
+
 -- end)
+
+
 
 function onCallFixePhone (source, phone_number, rtcOffer, extraData)
     local indexCall = lastIndexCall
@@ -597,14 +651,13 @@ function onCallFixePhone (source, phone_number, rtcOffer, extraData)
         phone_number = string.sub(phone_number, 2)
     end
     local sourcePlayer = tonumber(source)
-	local xplayer = ESX.GetPlayerFromId(source)
-    local identifier = xplayer.identifier
+    local srcIdentifier = getPlayerID(source)
 
     local srcPhone = ''
     if extraData ~= nil and extraData.useNumber ~= nil then
         srcPhone = extraData.useNumber
     else
-        srcPhone = getNumberPhone(identifier)
+        srcPhone = getNumberPhone(srcIdentifier)
     end
 
     AppelsEnCours[indexCall] = {
@@ -627,6 +680,8 @@ function onCallFixePhone (source, phone_number, rtcOffer, extraData)
     TriggerClientEvent('gcPhone:waitingCall', sourcePlayer, AppelsEnCours[indexCall], true)
 end
 
+
+
 function onAcceptFixePhone(source, infoCall, rtcAnswer)
     local id = infoCall.id
     
@@ -638,9 +693,7 @@ function onAcceptFixePhone(source, infoCall, rtcAnswer)
         PhoneFixeInfo[id] = nil
         TriggerClientEvent('gcPhone:notifyFixePhoneChange', -1, PhoneFixeInfo)
         TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].transmitter_src, AppelsEnCours[id], true)
-	SetTimeout(1000, function() -- change to +1000, if necessary.
-       	TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].receiver_src, AppelsEnCours[id], false)
-	end)
+        TriggerClientEvent('gcPhone:acceptCall', AppelsEnCours[id].receiver_src, AppelsEnCours[id], false)
         saveAppels(AppelsEnCours[id])
     end
 end
@@ -653,5 +706,6 @@ function onRejectFixePhone(source, infoCall, rtcAnswer)
     if AppelsEnCours[id].is_accepts == false then
         saveAppels(AppelsEnCours[id])
     end
-    AppelsEnCours[id] = nil 
+    AppelsEnCours[id] = nil
+    
 end
