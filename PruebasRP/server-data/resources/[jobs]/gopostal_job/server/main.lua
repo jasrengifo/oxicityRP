@@ -72,8 +72,7 @@ AddEventHandler('gopostal_job:Item', function(itemName, amount, label, type)
 		return
 	end
 	if type == 'pick' then
-		print(itemName)
-		print(itemName)
+
 
 		if itemName == "letter" and (Config.letter ~= -1 and (sourceItem.count + amount) > Config.letter) then
 			TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
