@@ -65,12 +65,19 @@ AddEventHandler('gopostal_job:Item', function(itemName, amount, label, type)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local sourceItem = xPlayer.getInventoryItem(itemName)
 
+
+
 	if amount < 0 then
 		print('gopostal_job: ' .. xPlayer.identifier .. ' attempted to exploit the distribution!')
 		return
 	end
 	if type == 'pick' then
-		if sourceItem.limit ~= -1 and (sourceItem.count + amount) > sourceItem.limit then
+		print(itemName)
+		print(itemName)
+
+		if itemName == "letter" and (Config.letter ~= -1 and (sourceItem.count + amount) > Config.letter) then
+			TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
+		elseif itemName == "colis" and (Config.colis ~= -1 and (sourceItem.count + amount) > Config.colis) then
 			TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
 		else
 			xPlayer.addInventoryItem(itemName, amount)

@@ -43,7 +43,7 @@ Locales['en'] = {
 	['take']					= 'You have taken ~y~x%s %s',
 	['remove']					= 'You have deposited ~y~x%s %s',
 
-	['player_cannot_hold']		= '~r~[ERROR]: You CANNOT Hold any more.',
+	['player_cannot_hold']		= '~r~[ERROR]: No puedes coger más.',
 	['not_enough']				= '~r~[ERROR]: Invalid Quantity.',
 
 		-- Notification Delivery
