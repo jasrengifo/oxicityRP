@@ -10,7 +10,7 @@
 -------------------------------------------
 
 local pizzeria = { x = -80.8, y = -274.6, z = 110.2}
-local spawnfaggio = { x = -1278.39, y = -1386.84, z = 3.38 }
+local spawnfaggio = { x = -83.0, y = -266.4, z = 109.6 }
 
 local propina = 0
 local posibilidad = 0
@@ -44,7 +44,7 @@ local py = 0
 local pz = 0
 
 local blips = {
-	{title="Pizzeria", colour=66, id=267, x = -1285.73, y = -1387.15, z = 3.44},
+	{title="Pizzeria", colour=66, id=267, x = -80.8, y = -274.6, z = 110.2},
 }
 
 -------------------------------------------
