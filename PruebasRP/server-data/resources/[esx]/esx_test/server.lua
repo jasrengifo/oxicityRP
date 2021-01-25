@@ -17,6 +17,7 @@ end)
 RegisterCommand("givemoney", function(source, args)
 
 	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+	
 	local xPlayer = ESX.GetPlayerFromId(source)
 	print(xPlayer.getIdentifier())
 
