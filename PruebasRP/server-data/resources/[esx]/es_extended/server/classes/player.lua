@@ -38,6 +38,14 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 		end
 	end
 
+	self.getCoords2 = function(vector)
+		if vector then
+			return 'x: '..self.coords.x..' y: '..self.coords.y..' z: '..self.coords.z
+		else
+			return 'x: '..self.coords.x..' y: '..self.coords.y..' z: '..self.coords.z
+		end
+	end
+
 	self.kick = function(reason)
 		DropPlayer(self.source, reason)
 	end
