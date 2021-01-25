@@ -44,7 +44,7 @@ local py = 0
 local pz = 0
 
 local blips = {
-	{title="Pizzeria", colour=66, id=267, x = -80.8, y = -274.6, z = 110.2},
+	{title="Pizzeria", colour=66, id=267, x = 80.8, y = 274.6, z = 110.2},
 }
 
 -------------------------------------------
