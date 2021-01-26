@@ -1,8 +1,8 @@
 Config = {}
 
-Config.Locale = 'br'
+Config.Locale = 'es'
 
-Config.serverLogo = 'https://i.imgur.com/AcgDL9f.png'
+Config.serverLogo = 'https://cdn.discordapp.com/attachments/795804639899025448/795804695443931166/Oxicity-InfoPanel.png'
 
 Config.font = {
 	name 	= 'Montserrat',
