@@ -1,7 +1,7 @@
 Config              = {}
-Config.DrawDistance = 100
-Config.Size         = {x = 1.5, y = 1.5, z = 1.5}
-Config.Color        = {r = 0, g = 128, b = 255}
+Config.DrawDistance = 10
+Config.Size         = {x = 1.2, y = 1.2, z = 1.2}
+Config.Color        = {r = 255, g = 30, b = 30}
 Config.Type         = 1
 Config.Locale       = 'es'
 

@@ -15,7 +15,7 @@ Citizen.CreateThread(function()
 	Citizen.Wait(5000)
 	PlayerData = ESX.GetPlayerData()
 
-	ESX.TriggerServerCallback('esx_shops:requestDBItems', function(ShopItems)
+	ESX.TriggerServerCallback('esx_O_Blackmarket:requestDBItems', function(ShopItems)
 		for k,v in pairs(ShopItems) do
 			if (Config.Zones[k] ~= nil) then
 				Config.Zones[k].Items = v
@@ -58,19 +58,19 @@ function OpenShopMenu(zone)
 
 end
 
-AddEventHandler('esx_shops:hasEnteredMarker', function(zone)
+AddEventHandler('esx_O_Blackmarket:hasEnteredMarker', function(zone)
 	CurrentAction     = 'shop_menu'
 	CurrentActionMsg  = _U('press_menu')
 	CurrentActionData = {zone = zone}
 end)
 
-AddEventHandler('esx_shops:hasExitedMarker', function(zone)
+AddEventHandler('esx_O_Blackmarket:hasExitedMarker', function(zone)
 	CurrentAction = nil
 	ESX.UI.Menu.CloseAll()
 end)
 
 -- Create Blips
-Citizen.CreateThread(function()
+--[[ Citizen.CreateThread(function()
 	for k,v in pairs(Config.Zones) do
 		for i = 1, #v.Pos, 1 do
 			local blip = AddBlipForCoord(v.Pos[i].x, v.Pos[i].y, v.Pos[i].z)
@@ -84,7 +84,7 @@ Citizen.CreateThread(function()
 			EndTextCommandSetBlipName(blip)
 		end
 	end
-end)
+end) ]]
 
 -- Display markers
 Citizen.CreateThread(function()
@@ -122,11 +122,11 @@ Citizen.CreateThread(function()
 		end
 		if isInMarker and not HasAlreadyEnteredMarker then
 			HasAlreadyEnteredMarker = true
-			TriggerEvent('esx_shops:hasEnteredMarker', currentZone)
+			TriggerEvent('esx_O_Blackmarket:hasEnteredMarker', currentZone)
 		end
 		if not isInMarker and HasAlreadyEnteredMarker then
 			HasAlreadyEnteredMarker = false
-			TriggerEvent('esx_shops:hasExitedMarker', LastZone)
+			TriggerEvent('esx_O_Blackmarket:hasExitedMarker', LastZone)
 		end
 	end
 end)
@@ -172,6 +172,6 @@ RegisterNUICallback('quit', function(data, cb)
 end)
 
 RegisterNUICallback('purchase', function(data, cb)
-	TriggerServerEvent('esx_shops:buyItem', data.item, data.count, data.loc)
+	TriggerServerEvent('esx_O_Blackmarket:buyItem', data.item, data.count, data.loc)
 	cb('ok')
 end)
