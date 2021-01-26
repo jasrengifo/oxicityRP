@@ -34,8 +34,8 @@ Locales['en'] = {
 	--Distribution
 	['open_distribution']		= 'Pulsa ~INPUT_PICKUP~ para recoger las cartas y los paquetes.',
 
-	['letter']					= 'Carta',
-	['colis']					= 'Paquete',
+	['letter']					= '📩 Carta',
+	['colis']					= '📦 Paquete',
 
 	['distribution']			= 'Centro de Distribución.',
 	['deposit']					= 'Deposita',
