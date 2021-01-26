@@ -53,7 +53,7 @@ window.addEventListener('message', function (event) {
 						'</div>' +
 						'<div class="purchase">' +
 
-							'<div class="buy" name="' + item.item + '">Buy</div>' +
+							'<div class="buy" name="' + item.item + '">Comprar</div>' +
 						'</div>' +
 					'</div>' +
 				'</div>');
