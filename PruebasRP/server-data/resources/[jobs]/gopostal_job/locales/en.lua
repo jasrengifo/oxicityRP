@@ -4,7 +4,7 @@ Locales['en'] = {
 
 	--Vestiaire
 	['no_outfit']			    = 'No hay ropa disponible',
-	['open_cloakroom']			= 'Pulsa ~INPUT_PICKUP~ para cambiar',
+	['open_cloakroom']			= 'Pulsa ~INPUT_PICKUP~ Para cambiar',
 
 	--Garage
 	['sort_vehicle']			= 'Pulsa ~INPUT_PICKUP~ para recuperar el vehículo',
@@ -26,13 +26,13 @@ Locales['en'] = {
 
 	['create_itinary']			= 'I took care of setting up your GPS, you just have to follow the route',
 
-	['not_enought_letter']		= '~r~Te faltan %s cartas.',
-	['not_enought_colis']		= '~r~Te faltan %s paquetes.',
+	['not_enought_letter']		= '~r~You\re Missing %s letters.',
+	['not_enought_colis']		= '~r~You\re Missing %s Parcels.',
 
 	['gain']					= '~g~| 💰 | ~w~Se ha informado de esta entrega  ~g~%s$',
 
 	--Distribution
-	['open_distribution']		= 'Pulsa ~INPUT_PICKUP~ para recuperar el correo y los paquetes',
+	['open_distribution']		= 'Pulsa ~INPUT_PICKUP~ Para recuperar el correo y los paquetes',
 
 	['letter']					= 'Carta ',
 	['colis']					= 'Paquete ',
@@ -50,7 +50,7 @@ Locales['en'] = {
 	['notif_title_delivery']    = '~r~OxiPostal',
 	['notif_district']			= '[Tu Sector:]\n----------------------\n%s',	
 
-	['bank_deposit_returned']   = 'un depósito de ~g~$%s~s~ ha sido devuelto.',
+	['bank_deposit_returned']   = 'un depósito de ~g~$%s~s~ ha sido devuelto a usted.',
 	['bank_deposit_taken']      = 'un depósito de ~g~$%s~s~ se te ha quitado.',
 }
 

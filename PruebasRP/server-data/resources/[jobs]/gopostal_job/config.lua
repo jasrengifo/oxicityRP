@@ -5,14 +5,14 @@ Config.Locale       = 'en'
 Config.JobVehiclePlate = 'OXICITY' -- Plaque des vehicules du job (maximun 8 caractères)
 Config.letter = 50
 Config.colis = 25
-Config.MaxLetter	   = 7 -- Maximum de lettre par point
+Config.MaxLetter	   = 10 -- Maximum de lettre par point
 Config.MinLetter	   = 2 -- Maximum de lettre par point
-Config.MaxColis		   = 4 -- Maximum de colis par point
+Config.MaxColis		   = 5 -- Maximum de colis par point
 Config.MinColis		   = 0 -- Maximum de colis par point
 
-Config.Caution 		   = 1000
-Config.PricePerLetter  = 10
-Config.PricePerColis   = 25
+Config.Caution 		   = 2000
+Config.PricePerLetter  = 7
+Config.PricePerColis   = 15
 
 Config.Vehicle = { -- Ajouter les véhicules du métier ici
 	"Boxville2"
