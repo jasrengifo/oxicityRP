@@ -82,7 +82,7 @@ $(".home").on("click", ".btnquantity", function() {
 			newVal = 1;
 		}
 	}
-	$button.parent().parent().find(".price").text((prices[$name] * newVal) + "$");
+	$button.parent().parent().find(".price").text((prices[$name] * newVal) + "€");
 	$button.parent().find(".number").text(newVal);
 
 });
