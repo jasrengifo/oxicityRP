@@ -42,7 +42,7 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 		if vector then
 			return 'x: '..self.coords.x..' y: '..self.coords.y..' z: '..self.coords.z
 		else
-			return 'x: '..self.coords.x..' y: '..self.coords.y..' z: '..self.coords.z
+			return 'x: '..self.coords.x..' y: '..self.coords.y..' z: '..self.coords.z-1
 		end
 	end
 

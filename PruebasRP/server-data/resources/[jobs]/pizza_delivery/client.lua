@@ -9,8 +9,8 @@
 ------------------VARIABLES----------------
 -------------------------------------------
 
-local pizzeria = { x = 80.8, y = 274.6, z = 110.2}
-local spawnfaggio = { x = 83.0, y = 266.4, z = 109.6 }
+local pizzeria = { x = 80.8, y = 274.6, z = 109.2}
+local spawnfaggio = { x = 83.0, y = 266.4, z = 108.6 }
 
 local propina = 0
 local posibilidad = 0
@@ -44,7 +44,7 @@ local py = 0
 local pz = 0
 
 local blips = {
-	{title="Pizzeria", colour=66, id=267, x = 80.8, y = 274.6, z = 110.2},
+	{title="Pizzeria", colour=66, id=267, x = 80.8, y = 274.6, z = 109.2},
 }
 
 -------------------------------------------
