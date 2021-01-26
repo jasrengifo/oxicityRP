@@ -1,57 +1,55 @@
 Locales['en'] = {
 
-	['blip_job']				= 'OxiPostal',
+	['blip_job']				= 'GoPostal',
 
 	--Vestiaire
-	['no_outfit']			    = 'No hay ropa disponible',
-	['open_cloakroom']			= 'Pulsa ~INPUT_PICKUP~ Para cambiar',
+	['no_outfit']			    = 'No hay ropa disponible.',
+	['open_cloakroom']			= 'Pulsa ~INPUT_PICKUP~ para cambiarte.',
 
 	--Garage
-	['sort_vehicle']			= 'Pulsa ~INPUT_PICKUP~ para recuperar el vehículo',
-	['return_vehicle']			= 'Pulsa ~INPUT_PICKUP~ para devolver el vehículo',
-	['vehiclespawner']			= 'Elija su vehículo de reparto.',
+	['sort_vehicle']			= 'Pulsa ~INPUT_PICKUP~ para recuperar el vehículo.',
+	['return_vehicle']			= 'Pulsa ~INPUT_PICKUP~ para devolver el vehículo.',
+	['vehiclespawner']			= 'Elige el vehículo de reparto.',
 
 	--Livraison
-	['Richman']					= 'Sector : "~o~Richman Neighborhood~w~" ',
-	['RockfordHills']		    = 'Sector : "~g~Rockford Hills Neighborhood~w~" ',
-	['Vespucci']				= 'Sector : "~b~Vespucci Neighborhood~w~" ',
-	['SLS']						= 'Sector : "~y~Spud of Los Santos~w~" ',
+	['Richman']					= 'Sector: "~o~Richman Neighborhood~w~" ',
+	['RockfordHills']		    = 'Sector: "~g~Rockford Hills Neighborhood~w~" ',
+	['Vespucci']				= 'Sector: "~b~Vespucci Neighborhood~w~" ',
+	['SLS']						= 'Sector: "~y~Spud of Los Santos~w~" ',
 
-	['join_next']				= '~g~[•] ~b~Vaya a ~w~la propiedad~r~ indicada en el GPS',
-	['pickup']					= 'Pulsa ~INPUT_PICKUP~ para entregar',
-	['must_be_walking']			= '~r~[ERROR]: Debe estar a PIE',
+	['join_next']				= '~g~[•] ~b~Dirígete a ~w~la propiedad~r~ indicada en el GPS.',
+	['pickup']					= 'Pulsa ~INPUT_PICKUP~ para realizar la entrega.',
+	['must_be_walking']			= '~r~[ERROR]: Debes estar a pie.',
 
-	['cancel_delivery']			= '~r~¡Las entregas han sido canceladas!, Regreso al depósito.',
-	['finish_delivery']			= '✉  ~o~Entrega finalizada, devolución al depósito.',
+	['cancel_delivery']			= '~r~¡Las entregas han sido canceladas! Vuelve al depósito.',
+	['finish_delivery']			= '✉  ~o~Entrega finalizada, vuelve al depósito.',
 
-	['create_itinary']			= 'I took care of setting up your GPS, you just have to follow the route',
+	['create_itinary']			= 'Me he encargado de ajustarte el GPS, sólo tienes que seguir la ruta indicada.',
 
-	['not_enought_letter']		= '~r~You\re Missing %s letters.',
-	['not_enought_colis']		= '~r~You\re Missing %s Parcels.',
+	['not_enought_letter']		= '~r~Te faltan %s cartas.',
+	['not_enought_colis']		= '~r~Te faltan %s paquetes.',
 
 	['gain']					= '~g~| 💰 | ~w~Se ha informado de esta entrega  ~g~%s$',
 
 	--Distribution
-	['open_distribution']		= 'Pulsa ~INPUT_PICKUP~ Para recuperar el correo y los paquetes',
+	['open_distribution']		= 'Pulsa ~INPUT_PICKUP~ para recoger las cartas y los paquetes.',
 
-	['letter']					= 'Carta ',
-	['colis']					= 'Paquete ',
+	['letter']					= 'Carta',
+	['colis']					= 'Paquete',
 
-	['distribution']			= 'Centro de distribución',
-	['deposit']					= 'Deposito',
-	['pick']					= 'Escoge',
-	['take']					= 'Usted ha tomado ~y~x%s %s',
-	['remove']					= 'Ha depositado ~y~x%s %s',
+	['distribution']			= 'Centro de Distribución.',
+	['deposit']					= 'Deposita',
+	['pick']					= 'Recoge',
+	['take']					= 'Has recogido: ~y~x%s %s',
+	['remove']					= 'Has depositado: ~y~x%s %s',
 
-	['player_cannot_hold']		= '~r~[ERROR]: No puedes coger más.',
-	['not_enough']				= '~r~[ERROR]: Cantidad inválida.',
+	['player_cannot_hold']		= '~r~[ERROR]: No puedes llevar más.',
+	['not_enough']				= '~r~[ERROR]: Cantidad no válida.',
 
 		-- Notification Delivery
-	['notif_title_delivery']    = '~r~OxiPostal',
-	['notif_district']			= '[Tu Sector:]\n----------------------\n%s',	
+	['notif_title_delivery']    = '~r~GoPostal',
+	['notif_district']			= '[Tu Sector de Entregas]\n----------------------\n%s',	
 
-	['bank_deposit_returned']   = 'un depósito de ~g~$%s~s~ ha sido devuelto a usted.',
-	['bank_deposit_taken']      = 'un depósito de ~g~$%s~s~ se te ha quitado.',
-}
-
+	['bank_deposit_returned']   = 'Se te ha devuelto tu depósito de: ~g~$%s~s~.',
+	['bank_deposit_taken']      = 'Se te ha retirado un depósito de: ~g~$%s~s~.'
 }
