@@ -59,6 +59,10 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 		return self.getAccount('money').money
 	end
 
+	self.getBlackMoney = function()
+		return self.getAccount('black_money').money
+	end
+
 	self.addMoney = function(money)
 		money = ESX.Math.Round(money)
 		self.addAccountMoney('money', money)
@@ -67,6 +71,11 @@ function CreateExtendedPlayer(playerId, identifier, group, accounts, inventory, 
 	self.removeMoney = function(money)
 		money = ESX.Math.Round(money)
 		self.removeAccountMoney('money', money)
+	end
+
+	self.removeBlackMoney = function(money)
+		money = ESX.Math.Round(money)
+		self.removeAccountMoney('black_money', money)
 	end
 
 	self.getIdentifier = function()

@@ -83,10 +83,10 @@ AddEventHandler('esx_O_Blackmarket:buyItem', function(itemName, amount, zone)
 	price = price * amount
 
 	-- can the player afford this item?
-	if xPlayer.getMoney() >= price then
+	if xPlayer.getBlackMoney() >= price then
 		-- can the player carry the said amount of x item?
 		if xPlayer.canCarryItem(itemName, amount) then
-			xPlayer.removeMoney(price)
+			xPlayer.removeBlackMoney(price)
 			xPlayer.addInventoryItem(itemName, amount)
 			TriggerClientEvent('esx:showNotification', _source, _U('bought', amount, itemLabel, price))
 		else
