@@ -306,7 +306,7 @@ ESX.Game.GetPedMugshot = function(ped, transparent)
 		return mugshot, GetPedheadshotTxdString(mugshot)
 	else
 		return
-	end
+	end 
 end
 
 ESX.Game.Teleport = function(entity, coords, cb)
