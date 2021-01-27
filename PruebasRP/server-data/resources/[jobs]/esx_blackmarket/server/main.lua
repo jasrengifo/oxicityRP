@@ -90,6 +90,7 @@ AddEventHandler('esx_O_Blackmarket:buyItem', function(itemName, amount, zone)
 			xPlayer.addInventoryItem(itemName, amount)
 			TriggerClientEvent('esx:showNotification', _source, _U('bought', amount, itemLabel, price))
 		else
+			print("teeest")
 			TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
 		end
 	else

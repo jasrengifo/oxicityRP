@@ -70,21 +70,21 @@ AddEventHandler('esx_O_Blackmarket:hasExitedMarker', function(zone)
 end)
 
 -- Create Blips
-Citizen.CreateThread(function()
-	for k,v in pairs(Config.Zones) do
-		for i = 1, #v.Pos, 1 do
-			local blip = AddBlipForCoord(v.Pos[i].x, v.Pos[i].y, v.Pos[i].z)
-			SetBlipSprite (blip, 52)
-			SetBlipDisplay(blip, 4)
-			SetBlipScale  (blip, 1.0)
-			SetBlipColour (blip, 2)
-			SetBlipAsShortRange(blip, true)
-			BeginTextCommandSetBlipName("STRING")
-			AddTextComponentString(_U('shops'))
-			EndTextCommandSetBlipName(blip)
-		end
-	end
-end)
+-- Citizen.CreateThread(function()
+-- 	for k,v in pairs(Config.Zones) do
+-- 		for i = 1, #v.Pos, 1 do
+-- 			local blip = AddBlipForCoord(v.Pos[i].x, v.Pos[i].y, v.Pos[i].z)
+-- 			SetBlipSprite (blip, 52)
+-- 			SetBlipDisplay(blip, 4)
+-- 			SetBlipScale  (blip, 1.0)
+-- 			SetBlipColour (blip, 2)
+-- 			SetBlipAsShortRange(blip, true)
+-- 			BeginTextCommandSetBlipName("STRING")
+-- 			AddTextComponentString(_U('shops'))
+-- 			EndTextCommandSetBlipName(blip)
+-- 		end
+-- 	end
+-- end)
 
 -- Display markers
 Citizen.CreateThread(function()
