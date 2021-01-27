@@ -19,9 +19,15 @@ RegisterCommand("tp", function(source, args)
 	
 	if     args[1] == "aeropuerto_desierto" then 
 		coords = {x=1701.3, y=3282.3, z=41.1}
-
+	elseif args[1] == "aeropuerto_los_santos" then
+		coords = {x=-1038.1, y=2738.3, z=13.8}
 	elseif args[1] == "gopostal" then
 		coords = {x=85.4, y=106.9, z=79.2}
+	elseif args[1] == "hospital" then
+		coords = {x=302.9, y=-1434.7, z=29.8}
+	elseif args[1] == "oficina_de_empleos" then
+		coords = {x=-264.0, y=-967.6, z=31.2}
+	
 	else   
 		coords = {x=args[1], y=args[2], z=args[3]}
 	end
