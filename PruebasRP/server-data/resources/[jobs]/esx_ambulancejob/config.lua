@@ -104,14 +104,14 @@ Config.Hospitals = {
 				From = vector3(317.9, -1476.1, 28.9),
 				To = {coords = vector3(238.6, -1368.4, 23.5), heading = 0.0},
 				Marker = {type = 1, x = 1.5, y = 1.5, z = 1.0, r = 102, g = 0, b = 102, a = 100, rotate = false}
-			}
+			},
 			-- Teleports Bitcoin (Ascensor)
 
 			{
 				From = vector3(-2360.8, 3250.1, 31.8),
 				To = {coords = vector3(-2360.8, 3250.1, 91.9), heading = 0.0},
 				Marker = {type = 42, x = 1, y = 1, z = 1, r = 236, g = 255, b = 0, a = 100, rotate = true}
-			}
+			},
 
 		},
 
