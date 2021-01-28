@@ -111,7 +111,7 @@ Config.Hospitals = {
 				From = vector3(-2360.8, 3250.1, 31.8),
 				To = {coords = vector3(-2360.8, 3250.1, 91.9), heading = 0.0},
 				Marker = {type = 42, x = 1, y = 1, z = 1, r = 236, g = 255, b = 0, a = 100, rotate = true}
-			},
+			}
 
 		},
 
