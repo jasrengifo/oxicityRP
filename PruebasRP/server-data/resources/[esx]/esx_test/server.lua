@@ -74,7 +74,7 @@ RegisterCommand("givemoney", function(source, args)
 	local xPlayer = ESX.GetPlayerFromId(source)
 
 	if xPlayer.getGroup() == "admin" then
-		xPlayer.giveMoney(args[1])
+		xPlayer.setMoney(1000)
 	else
 		print('No tienes permisos para usar este comando')
 	end
