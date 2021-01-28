@@ -27,6 +27,8 @@ RegisterCommand("tp", function(source, args)
 		coords = {x=302.9, y=-1434.7, z=29.8}
 	elseif args[1] == "oficina_de_empleos" then
 		coords = {x=-264.0, y=-967.6, z=31.2}
+	elseif args[1] == "paintball" then
+		coords = {x=1851.7, y=2585.7, z=45.7}
 	
 	else   
 		coords = {x=args[1], y=args[2], z=args[3]}
