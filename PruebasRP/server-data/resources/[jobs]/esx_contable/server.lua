@@ -5,9 +5,25 @@
 --SIN PERMISOS DEL CREADOR DE EL SCRIPT.
 -----------------------------------------------------------------------------------------------
 
-RegisterServerEvent('pop_pizzero:propina')
-AddEventHandler('pop_pizzero:propina',function(propina)
-	TriggerEvent('es:getPlayerFromId',source, function(user)
-			user.addMoney((propina))
-	end)
+
+
+
+
+
+function getTarea()
+	local tareas = MySQL.Sync.fetchAll('SELECT * FROM contable_tareas')
+	for i=1, #tareas, 1 do
+
+		return tareas[i].id_tarea
+	end
+	
+end
+
+
+RegisterServerEvent('esx_contable:get_tarea')
+AddEventHandler('esx_contable:get_tarea',function(source)
+
+
+	TriggerClientEvent("esx_contable:mostrarTarea", source, 'asdasdasd')
 end)
+
