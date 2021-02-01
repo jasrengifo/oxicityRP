@@ -21,9 +21,9 @@ end
 
 
 RegisterServerEvent('esx_contable:get_tarea')
-AddEventHandler('esx_contable:get_tarea',function(source)
+AddEventHandler('esx_contable:get_tarea',function()
+	print('mierda')
+	TriggerClientEvent("esx_contable:mostrarTarea")
 
-
-	TriggerClientEvent("esx_contable:mostrarTarea", source, 'asdasdasd')
 end)
 

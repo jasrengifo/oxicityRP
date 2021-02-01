@@ -373,23 +373,28 @@ AddEventHandler('trew_hud_ui:setInfo', function(info)
 	SendNUIMessage({ action = 'setMoney', id = 'bank', value = info['bankMoney'] })
 	SendNUIMessage({ action = 'setMoney', id = 'blackMoney', value = info['blackMoney'] })
 
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+
 	TriggerEvent('esx:getSharedObject', function(obj)
 		ESX = obj
 		ESX.PlayerData = ESX.GetPlayerData()
+		if ESX.PlayerData.job ~= nil then
+			if ESX.PlayerData.job.grade_name ~= nil and ESX.PlayerData.job.grade_name == 'boss' then
+				if (Config.ui.showSocietyMoney == true) then
+					SendNUIMessage({ action = 'element', task = 'enable', value = 'society' })
+				end
+				ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
+					SendNUIMessage({ action = 'setMoney', id = 'society', value = money })
+				end, ESX.PlayerData.job.name)
+			else
+				SendNUIMessage({ action = 'element', task = 'disable', value = 'society' })
+			end
+		end
 	end)
 
-	if ESX.PlayerData.job ~= nil then
-		if ESX.PlayerData.job.grade_name ~= nil and ESX.PlayerData.job.grade_name == 'boss' then
-			if (Config.ui.showSocietyMoney == true) then
-				SendNUIMessage({ action = 'element', task = 'enable', value = 'society' })
-			end
-			ESX.TriggerServerCallback('esx_society:getSocietyMoney', function(money)
-				SendNUIMessage({ action = 'setMoney', id = 'society', value = money })
-			end, ESX.PlayerData.job.name)
-		else
-			SendNUIMessage({ action = 'element', task = 'disable', value = 'society' })
-		end
-	end
+
+
+	
 
 	local playerStatus 
 	local showPlayerStatus = 0

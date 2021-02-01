@@ -84,12 +84,14 @@ AddEventHandler('esx_shops:buyItem', function(itemName, amount, zone)
 
 	-- can the player afford this item?
 	if xPlayer.getMoney() >= price then
+
 		-- can the player carry the said amount of x item?
 		if xPlayer.canCarryItem(itemName, amount) then
 			xPlayer.removeMoney(price)
 			xPlayer.addInventoryItem(itemName, amount)
 			TriggerClientEvent('esx:showNotification', _source, _U('bought', amount, itemLabel, price))
 		else
+			print("POPER")
 			TriggerClientEvent('esx:showNotification', _source, _U('player_cannot_hold'))
 		end
 	else

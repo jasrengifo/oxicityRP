@@ -224,7 +224,7 @@ end)
 
 --Decide cual tarea vas a usar y la muestra
 RegisterNetEvent('esx_contable:mostrarTarea')
-	AddEventHandler('esx_contable:mostrarTarea', function(source, mierda)
+	AddEventHandler('esx_contable:mostrarTarea', function()
 
         
 		SendNUIMessage({
