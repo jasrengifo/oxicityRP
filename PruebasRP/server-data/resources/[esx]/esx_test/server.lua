@@ -1,14 +1,12 @@
-
--- Funcion para todos.
-RegisterCommand("oxinfo", function(source)
-	TriggerClientEvent("esx_test:oxicity", source)
-
-	-- TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-	
-	-- local xPlayer = ESX.GetPlayerFromId(source)
-
+RegisterCommand("tp", function(source, args)
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 end)
+
+
+
+
+
 
 
 -- Funcion para todos.
@@ -20,7 +18,7 @@ RegisterCommand("tp", function(source, args)
 	if     args[1] == "aeropuerto_desierto" then 
 		coords = {x=1701.3, y=3282.3, z=41.1}
 	elseif args[1] == "aeropuerto_los_santos" then
-		coords = {x=-1038.1, y=2738.3, z=13.8}
+		coords = {x=-1038.1, y=2738.3, z=22.8}
 	elseif args[1] == "gopostal" then
 		coords = {x=85.4, y=106.9, z=79.2}
 	elseif args[1] == "hospital" then
@@ -64,6 +62,15 @@ end)
 
 
 
+
+-- Funcion para todos.
+RegisterCommand("go", function(source, args)
+	TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local xTarget = ESX.GetPlayerFromId(args[1])
+	
+	xPlayer.setCoords(xTarget.getCoords())
+end)
 
 
 
